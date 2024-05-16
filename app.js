@@ -8,9 +8,6 @@ const App = {
 		};
 	},
 	methods: {
-		inputChangeHandler(event) {
-			this.inputValue = event.target.value;
-		},
 		addNewNote() {
 			if (this.inputValue !== "") {
 				this.notes.push(this.inputValue);
@@ -27,6 +24,25 @@ const App = {
 			this.notes.splice(idx, 1);
 		},
 	},
+  computed:{
+    doubleCountComputed(){
+      // console.log('doubleComputed')
+      return this.notes.length * 2
+    },
+  },
+  watch:{
+    inputValue(value){
+      // console.log(value, 'eee')
+    }
+  }
 };
 
+
+
+
+
+
+
 Vue.createApp(App).mount("#app");
+
+
