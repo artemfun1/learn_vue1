@@ -32,7 +32,7 @@ const App = {
   },
   watch:{
     inputValue(value){
-      // console.log(value, 'eee')
+      console.log(value, 'eee ')
     }
   }
 };
