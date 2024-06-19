@@ -83,8 +83,12 @@ h3 {
     white-space: nowrap;
     font-weight: 700;
     outline: none;
+
+
+    
     background: #fff;
     transition: all 0.22s;
+    
 }
 
 .btn:hover {
