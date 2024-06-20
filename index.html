@@ -5,19 +5,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 		<link rel="stylesheet" href="style.css" />
+		<style>
+			[v-cloak] {
+				display: none;
+			}
+		</style>
 	</head>
 	<body>
-		<div class="cuntainer pt-5" id="app">
+		<div class="cuntainer pt-5" id="app" v-cloak>
 			<div class="card center">
+				<!-- 
+				<div v-html="myHtml" ></div>
 				<h2 v-text="title"></h2>
- 
 				<h2 v-once>{{title}}</h2>
 				<h2 v-pre>{{title}}</h2>
+				<button class="btn" @click="title= 'новое название'">
+					Изменить название
+				</button> -->
 
-				<button
-				class="btn"
-				@click="title= 'новое название'"
-				> Изменить название</button>
+
+				
 			</div>
 		</div>
 
