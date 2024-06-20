@@ -23,8 +23,20 @@
 					Изменить название
 				</button> -->
 
+				<ul class="list" v-if="array.length!==0">
+					<li 
+					class="list-item" 
+					v-for="(item,i) in array"
+					@click="array.splice(i,1)"
+					v-bind:key="item"
+					>
+					{{`${item} - ${i}`}}&nbsp;
+					<input type="text" @click.stop>
+				</li>
+				</ul>
+				<h3 v-show="array.length ===0">элементов нет</h3v-else>
+				<!-- <li class="list-item" v-for="(value,key) in person">{{`${key} - ${value}`}}</li> -->
 
-				
 			</div>
 		</div>
 
