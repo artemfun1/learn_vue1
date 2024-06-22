@@ -1,51 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<link rel="stylesheet" href="style.css" />
-		<style>
-			[v-cloak] {
-				display: none;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="cuntainer pt-5" id="app" v-cloak>
-			<div class="card center">
-				<!-- 
-				<div v-html="myHtml" ></div>
-				<h2 v-text="title"></h2>
-				<h2 v-once>{{title}}</h2>
-				<h2 v-pre>{{title}}</h2>
-				<button class="btn" @click="title= 'новое название'">
-					Изменить название
-				</button> -->
-
-				<div class="form-control">
-					<input type="text" @keyup.enter="addItem" ref="myInput">
-				</div>
-
-
-				<ul class="list" v-if="array.length!==0">
-					<li 
-					class="list-item" 
-					v-for="(item,i) in array"
-					@click.right.prevent="remove(i), log()"
-					v-bind:key="item"
-					>
-					{{`${item} - ${i}`}}&nbsp;
-					<input type="text" @click.stop>
-				</li>
-				</ul>
-				<h3 v-show="array.length ===0">элементов нет</h3v-else>
-				<!-- <li class="list-item" v-for="(value,key) in person">{{`${key} - ${value}`}}</li> -->
-
-			</div>
-		</div>
-
-		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-		<script src="app.js"></script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
