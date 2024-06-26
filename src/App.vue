@@ -14,10 +14,12 @@ export default {
 				{ id: 2, title: "JavaScript 2", body: "Описание поста 2" },
 				{ id: 3, title: "JavaScript 3", body: "Описание поста 3" },
 			],
+			isShow:false,
 		};
 	},
 	methods: {
 		createPost(post) {
+			this.isShow=false
 			this.posts.push(post);
 		},
 		deletePost(postId) {
@@ -29,15 +31,17 @@ export default {
 
 <template>
 	<div class="app">
-		<PostForm @create="createPost" />
+		<h1>Страница с постами</h1>
+		<my-button style="margin-top: 15px; " @click="isShow=true"> Добавить пост</my-button>
+		<my-dialog v-model:show="isShow" >
+			<PostForm @create="createPost" />
+		</my-dialog>
 
-		<PostList
-			v-if="posts.length > 0"
-			v-bind:posts="posts"
-			@deletePost="deletePost"
-		/>
-		<h3 v-else>Пользователей нет</h3>
+		<PostList v-bind:posts="posts" @removePost="deletePost" />
+
+	
 	</div>
+	
 </template>
 
 <style>
@@ -48,6 +52,8 @@ export default {
 }
 .app {
 	padding: 20px;
+	display: flex;
+	flex-direction: column;
 }
 body {
 	background-color: #e6e6e6;
