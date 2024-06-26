@@ -7,9 +7,11 @@
 			@deletePost="deletePost"
 			:key="post.id"
 		/>
+
 	</div>
 
 	<h2 v-show="posts.length === 0" style="color: red">Список постов пуст</h2>
+	
 </template>
 
 <script>
