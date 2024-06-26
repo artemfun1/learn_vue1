@@ -1,5 +1,12 @@
 <script>
+import PostForm from "@/components/PostForm";
+import PostList from "./components/PostList";
+
 export default {
+	components: {
+		PostList,
+		PostForm,
+	},
 	data() {
 		return {
 			posts: [
@@ -7,18 +14,14 @@ export default {
 				{ id: 2, title: "JavaScript 2", body: "Описание поста 2" },
 				{ id: 3, title: "JavaScript 3", body: "Описание поста 3" },
 			],
-			name: "",
-			body: "",
 		};
 	},
 	methods: {
-		addPost(e) {
-			e.preventDefault();
-			this.posts.push({
-				id: posts.length + 1,
-				title: this.name,
-				body: this.body,
-			});
+		createPost(post) {
+			this.posts.push(post);
+		},
+		deletePost(postId) {
+			this.posts = this.posts.filter(post => post.id !== postId);
 		},
 	},
 };
@@ -26,16 +29,14 @@ export default {
 
 <template>
 	<div class="app">
-		<form>
-			<h4>Создание поста</h4>
-			<input class="input" type="text" placeholder="Название" />
-			<input class="input" type="text" placeholder="Описание" />
-			<button @click="addPost" type="submit">Добавить</button>
-		</form>
-		<div class="post" v-for="post in posts">
-			<div><strong>Название: </strong> {{ post.title }}</div>
-			<div><strong>Описание: </strong> {{ post.body }}</div>
-		</div>
+		<PostForm @create="createPost" />
+
+		<PostList
+			v-if="posts.length > 0"
+			v-bind:posts="posts"
+			@deletePost="deletePost"
+		/>
+		<h3 v-else>Пользователей нет</h3>
 	</div>
 </template>
 
@@ -45,18 +46,6 @@ export default {
 	padding: 0;
 	box-sizing: border-box;
 }
-.post {
-	padding: 15px;
-	border: 2px solid teal;
-	margin-top: 15px;
-}
-.input {
-	width: 100%;
-	border: 1px solid teal;
-	padding: 10px;
-	margin-top: 10px;
-}
-
 .app {
 	padding: 20px;
 }
