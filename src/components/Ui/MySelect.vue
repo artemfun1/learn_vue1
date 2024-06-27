@@ -9,6 +9,7 @@
 
 	</select>
 </template>
+
 <script>
 export default {
   name:'my-select',

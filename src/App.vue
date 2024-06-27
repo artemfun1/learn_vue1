@@ -1,3 +1,26 @@
+<template>
+	<div class="app">
+		<h1>Страница с постами</h1>
+		<div class="app__btns">
+			<my-button @click="isShow = true"> Добавить пост </my-button>
+			
+			<my-select
+			 v-model="selectedSort"
+			:options="sortOptions"/>
+		</div>
+
+		<my-dialog v-model:show="isShow">
+			<PostForm @create="createPost" />
+		</my-dialog>
+		<div v-if="isPostLoading">Loading...</div>
+		<PostList
+			v-else="!isPostLoading"
+			v-bind:posts="posts"
+			@removePost="deletePost"
+		/>
+	</div>
+</template>
+
 <script>
 import PostForm from "@/components/PostForm";
 import axios from "axios";
@@ -47,27 +70,6 @@ export default {
 };
 </script>
 
-<template>
-	<div class="app">
-		<h1>Страница с постами</h1>
-		<div class="app__btns">
-			<my-button @click="isShow = true"> Добавить пост </my-button>
-			
-			<my-select v-model="selectedSort"
-			:options="sortOptions"></my-select>
-		</div>
-
-		<my-dialog v-model:show="isShow">
-			<PostForm @create="createPost" />
-		</my-dialog>
-		<div v-if="isPostLoading">Loading...</div>
-		<PostList
-			v-else="!isPostLoading"
-			v-bind:posts="posts"
-			@removePost="deletePost"
-		/>
-	</div>
-</template>
 
 <style>
 * {
