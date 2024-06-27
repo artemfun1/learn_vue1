@@ -14,6 +14,8 @@ export default {
 			posts: [],
 			isShow: false,
 			isPostLoading: true,
+			selectedSort: "",
+			sortOptions: [{ value: "title", name: "По названию" },{ value: "body", name: "По содержанию" }],
 		};
 	},
 	methods: {
@@ -48,9 +50,13 @@ export default {
 <template>
 	<div class="app">
 		<h1>Страница с постами</h1>
-		<my-button style="margin: 15px 0" @click="isShow = true">
-			Добавить пост</my-button
-		>
+		<div class="app__btns">
+			<my-button @click="isShow = true"> Добавить пост </my-button>
+			
+			<my-select v-model="selectedSort"
+			:options="sortOptions"></my-select>
+		</div>
+
 		<my-dialog v-model:show="isShow">
 			<PostForm @create="createPost" />
 		</my-dialog>
@@ -71,8 +77,14 @@ export default {
 }
 .app {
 	padding: 20px;
+	& .app__btns {
+		margin: 15px 0;
+		display: flex;
+		justify-content: space-between;
+	}
 }
+
 body {
-	background-color: #e6e6e6;
+	background-color: #868686;
 }
 </style>
