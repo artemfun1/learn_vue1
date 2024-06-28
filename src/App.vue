@@ -5,13 +5,15 @@
 			<my-button @click="isShow = true"> Добавить пост </my-button>
 			
 			<my-select
-			 v-model="selectedSort"
+
+			v-model="selectedSort"
 			:options="sortOptions"/>
 		</div>
 
 		<my-dialog v-model:show="isShow">
 			<PostForm @create="createPost" />
 		</my-dialog>
+
 		<div v-if="isPostLoading">Loading...</div>
 		<PostList
 			v-else="!isPostLoading"
@@ -66,6 +68,14 @@ export default {
 	},
 	mounted() {
 		this.fetchPost();
+	},
+	watch:{
+		selectedSort(newValue){
+			console.log(newValue)
+		},
+		isShow(newValue){
+			console.log(newValue)
+		}
 	},
 };
 </script>

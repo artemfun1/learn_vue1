@@ -1,6 +1,6 @@
 <template>
 
-	<form class="form" v-on:submit.prevent>
+	<form class="form" @submit.prevent>
 		<h4>Создание поста</h4>
 
 		<my-input
@@ -39,6 +39,12 @@ export default {
 			};
 		},
 	},
+	watch:{
+		post(newValue){
+console.log(newValue)
+console.log(1)
+		}
+	}
 };
 </script>
 
