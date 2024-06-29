@@ -40,9 +40,11 @@ export default {
 		},
 	},
 	watch:{
-		post(newValue){
-console.log(newValue)
-console.log(1)
+		post:{
+			handler(newValue){
+				
+			},
+			deep: true,
 		}
 	}
 };
