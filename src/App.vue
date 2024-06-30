@@ -141,7 +141,7 @@ export default {
 		const observer = new IntersectionObserver(callback, options);
 		observer.observe(this.$refs.observer);
 	},
-	computed: {
+	computed: { 
 		sortedPosts() {
 			return [...this.posts].sort((a, b) =>
 				a[this.selectedSort]?.localeCompare(b[this.selectedSort])
