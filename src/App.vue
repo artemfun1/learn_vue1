@@ -142,7 +142,7 @@ export default {
 		observer.observe(this.$refs.observer);
 	},
 	computed: {  
-		sortedPosts() {
+		sortedPosts() { 
 			return [...this.posts].sort((a, b) =>
 				a[this.selectedSort]?.localeCompare(b[this.selectedSort])
 			);
