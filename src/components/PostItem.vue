@@ -1,11 +1,14 @@
 <template>
 	<div class="post">
 		<div>
-			<div> Id: {{ post.id }}</div>
+			<div>Id: {{ post.id }}</div>
 			<div><strong>Название: </strong> {{ post.title }}</div>
 			<div><strong>Описание: </strong> {{ post.body }}</div>
 		</div>
-		<my-button @click="deletePost"> Удалить </my-button>
+		<div class="post__btns">
+			<my-button @click="$router.push(`/posts/${post.id}`)"> Открыть </my-button>
+			<my-button @click="deletePost"> Удалить </my-button>
+		</div>
 	</div>
 </template>
 
@@ -33,5 +36,9 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+.post__btns {
+	display: flex;
+	gap: 5px;
 }
 </style>

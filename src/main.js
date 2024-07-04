@@ -1,6 +1,9 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import uiComponents from "./components/Ui";
+import router from "./router/router";
+
+import derectives from "./directives";
 
 const app = createApp(App);
 
@@ -8,4 +11,8 @@ uiComponents.forEach(component => {
 	app.component(component.name, component);
 });
 
-app.mount("#app");
+derectives.forEach(derective => {
+	app.directive(derective.name, derective);
+});
+
+app.use(router).mount("#app");
