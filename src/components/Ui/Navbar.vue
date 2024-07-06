@@ -5,6 +5,7 @@
 			<my-button @click="$router.push('/posts')">Posts</my-button>
 			<my-button @click="$router.push('/about')">About</my-button>
 			<my-button @click="$router.push('/store')">Store</my-button>
+			<my-button @click="$router.push('/comp')">CompApi</my-button>
 		</div>
 	</div>
 </template>
@@ -24,6 +25,6 @@ export default {};
 .nav__btns {
 	margin-left: auto;
 	display: flex;
-	gap: 20px;
+	gap: 1px;
 }
 </style>

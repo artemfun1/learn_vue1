@@ -1,21 +1,29 @@
 <template>
-	<div >
-		<my-button @click="console.log(3)"> debag </my-button>
+	<div>
 
+	<my-button @click="console.log(3)"> debag </my-button>
 
-		<h1>Страница с постами</h1>
+	<h1>Страница с постами</h1>
 
-		<!-- <my-input v-focus v-model:value="searchQuery" placeholder="Поиск" /> -->
+	<my-input
+      :model-value="searchQuery"
+      @update:model-value="setSearchQuery"
+      placeholder="Поиск...."
+      v-focus
+    />
 
-		<div class="app__btns">
-			<my-button @click="isShow = true"> Добавить пост </my-button>
+	<div class="app__btns">
+		<my-button @click="isShow = true"> Добавить пост </my-button>
 
-			<!-- <my-select v-model="selectedSort" :options="sortOptions" />
-		</div> -->
+		<my-select 
+		:model-value="selectedSort" 
+		@update:model-value="setSelectedSort"
+		:options="sortOptions" />
+		</div> 
 
-		<!-- <my-dialog v-model:show="isShow">
+		<my-dialog v-model:show="isShow">
 			<PostForm @create="createPost" />
-		</my-dialog> -->
+		</my-dialog>
 
 		<PostList
 			v-if="!isPostLoading"
@@ -26,7 +34,7 @@
 
 		<div v-intersection="fetchMorePost" class="observer"></div>
 
-		<!-- <div class="page__wrapper">
+		<div class="page__wrapper">
 			<div
 				v-for="pageNumber in totalPages"
 				:key="pageNumber"
@@ -39,17 +47,16 @@
 			>
 				{{ pageNumber }}
 			</div>
-		</div> -->
+		</div> 
 	</div>
 </template>
 
 <script>
 import PostForm from "../components/PostForm";
-import axios from "axios";
 import PostList from "../components/PostList";
 import MyButton from "../components/Ui/MyButton.vue";
 
-import {mapState,mapGetters,mapMutations,mapActions}from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 
 export default {
 	components: {
@@ -58,11 +65,19 @@ export default {
 	},
 	data() {
 		return {
-			
+			isShow: false,
 		};
 	},
 	methods: {
-
+		...mapMutations({
+			setPage: "post/setPage",
+			setSearchQuery:'post/setSearchQuery',
+			setSelectedSort:'post/setSelectedSort'
+		}),
+		...mapActions({
+			fetchMorePost: "post/fetchMorePost",
+			fetchPost: "post/fetchPost",
+		}),
 		createPost(post) {
 			this.isShow = false;
 			this.posts.push(post);
@@ -70,21 +85,27 @@ export default {
 		deletePost(postId) {
 			this.posts = this.posts.filter(post => post.id !== postId);
 		},
-		
-		// changePage(n){
-		// 	this.page = n
-		// }
+
+	
 	},
 	mounted() {
-		{{$store.state.post}}
 		this.fetchPost();
-
-
-
-
 	},
 	computed: {
-		
+		...mapState({
+			posts: state=>state.post.posts,
+			isPostLoading: state=>state.post.isPostLoading,
+			selectedSort: state=>state.post.selectedSort,
+			searchQuery: state=>state.post.searchQuery,
+			page: state=>state.post.page,
+			limit: state=>state.post.limit,
+			totalPages: state=>state.post.totalPages,
+			sortOptions: state=>state.post.sortOptions
+		}),
+		...mapGetters({
+			sortedPosts: "post/sortedPosts",
+			sortedAndSearched: "post/sortedAndSearched",
+		}),
 	},
 	watch: {
 		// page(){
@@ -100,8 +121,6 @@ export default {
 </script>
 
 <style>
-
-
 .app__btns {
 	margin: 15px 0;
 	display: flex;
