@@ -3,6 +3,7 @@ import MainPage from '../pages/MainPage'
 import PostsPage from '../pages/PostsPage'
 import About from '../pages/About'
 import PostIdPage from '../pages/PostIdPage'
+import PostsPageWithVuex from '../pages/PostsPageWithVuex'
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path:'/posts/:id',
     component: PostIdPage,
+  },
+  {
+    path:'/store',
+    component: PostsPageWithVuex,
   },
  
 ]
